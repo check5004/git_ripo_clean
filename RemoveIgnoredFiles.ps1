@@ -39,10 +39,6 @@ echo "無視されるべきが追跡されているファイルのリストはこちらに保存されました: $i
 
 # それらのファイルをキャッシュから削除
 foreach ($file in $ignoredButTrackedFiles) {
-  #@ [test] Appディレクトリ内のファイルは削除しない
-  if ($file -match "App") {
-    continue
-  }
   $result = git rm --cached "$file" 2>&1
   $resultString = $result | Out-String
   if ($resultString -notmatch "fatal") {
